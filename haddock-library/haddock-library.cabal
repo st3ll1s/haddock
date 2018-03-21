@@ -1,6 +1,6 @@
 cabal-version:        2.0
 name:                 haddock-library
-version:              1.5.0.1
+version:              1.5.0.2
 synopsis:             Library exposing some functionality of Haddock.
 description:          Haddock is a documentation-generation tool for Haskell
                       libraries. These modules expose some functionality of it
@@ -29,7 +29,7 @@ library
     , transformers >= 0.3.0   && < 0.6
 
   -- internal sub-lib
-  build-depends:        attoparsec
+  build-depends:        attoparsec-vendored
 
   hs-source-dirs:       src
 
@@ -48,7 +48,7 @@ library
   if impl(ghc >= 8.0)
     ghc-options: -Wcompat -Wnoncanonical-monad-instances -Wnoncanonical-monadfail-instances
 
-library attoparsec
+library attoparsec-vendored
   default-language:     Haskell2010
 
   build-depends:
@@ -113,10 +113,10 @@ test-suite spec
     , QuickCheck    ^>= 2.11
 
   -- internal sub-lib
-  build-depends: attoparsec
+  build-depends: attoparsec-vendored
 
   -- Versions for the dependencies below are transitively pinned by
-  -- dependency on haddock-library:lib:attoparsec
+  -- dependency on haddock-library:lib:attoparsec-vendored
   build-depends:
       base
     , bytestring
@@ -143,7 +143,7 @@ test-suite fixtures
     haddock-library
 
   -- Versions for the dependencies below are transitively pinned by
-  -- dependency on haddock-library:lib:attoparsec
+  -- dependency on haddock-library:lib:attoparsec-vendored
   build-depends:
       base
 
